@@ -1,21 +1,48 @@
 #include "FastLED.h"
-#define NUM_LEDS 50
+#define NUM_LEDS 45
+CRGB leds[NUM_LEDS]; //has to be here to be available in all modes
+
+#include "ColorFade.h"
+
 #define DATA_PIN 5
 
-// Define the array of leds
-CRGB leds[NUM_LEDS];
+//type of the parse functions
+typedef void (*ParsePtr)(void);
+typedef void (*ExecutePtr)(void);
+
+enum Mode {
+  FADE,
+  NUM_MODES //has to be the last entry!!
+};
+
+
+ParsePtr parse[NUM_MODES];//the parse functions of all the modes
+ExecutePtr execute[NUM_MODES];
+Mode currentMode = FADE;
+
 
 void setup() { 
-  	 FastLED.addLeds<WS2811, DATA_PIN>(leds, NUM_LEDS);
+  parse[FADE] = colorFadeParseSerial;
+  
+  execute[FADE] = colorFadeUpdate;
+  FastLED.addLeds<WS2811, DATA_PIN>(leds, NUM_LEDS);
 }
 
 void loop() { 
-  Serial.println("test");
-  // Turn the LED on, then pause
-  for(int i = 0; i < NUM_LEDS; ++i)
-    leds[i] = CRGB::Blue;
+  
+  if(Serial.available() > 0)
+  {
+    const uint8_t mode = Serial.read();
+    currentMode = (Mode)mode;
+    parse[currentMode]();
+  }
+  execute[currentMode]();
   FastLED.show();
-  delay(200);
-  // Now turn the LED off, then pause
+}
 
+
+//parses command from serial 
+void executeCommand(const uint8_t cmd)
+{
+  
 }
