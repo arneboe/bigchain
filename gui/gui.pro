@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    fade.cpp \
+    strobe.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    fade.h \
+    modeUi.h \
+    strobe.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    fade.ui \
+    strobe.ui

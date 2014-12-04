@@ -1,4 +1,8 @@
-#ifndef MODE_H
-#define MODE_H
+#pragma once
 
-#endif // MODE_H
+class ModeUi
+{
+public:
+    virtual void enable() = 0;
+    virtual void disable() = 0;
+};
