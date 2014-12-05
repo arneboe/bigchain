@@ -1,7 +1,7 @@
 #include "FastLED.h"
 #include "Mode.h"
 #define NUM_LEDS 45
-#define DATA_PIN 5
+#define DATA_PIN 7
 
 #include "Time.h"
 CRGB leds[NUM_LEDS]; //has to be here to be available in all modes
@@ -63,7 +63,6 @@ void setup() {
 }
 
 void loop() { 
-  
   if(Serial.available() > 0)
   {
     const uint8_t mode = Serial.read();

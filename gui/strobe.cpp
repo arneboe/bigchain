@@ -56,6 +56,10 @@ void Strobe::send()
         {
             data.append((char)STROBE_SNAKE);
         }
+        else if(ui->buttonAreas->isChecked())
+        {
+            data.append((char)STROBE_AREA);
+        }
 
         if(ui->checkBoxColor->isChecked())
         {
@@ -78,6 +82,7 @@ void Strobe::on_buttonNormal_clicked()
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(true);
     ui->buttonSnake->setChecked(false);
+    ui->buttonAreas->setChecked(false);
     send();
 }
 
@@ -88,6 +93,7 @@ void Strobe::on_buttonRandom_clicked()
     ui->buttonRandom->setChecked(true);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
+    ui->buttonAreas->setChecked(false);
     send();
 }
 
@@ -98,6 +104,7 @@ void Strobe::on_buttonHalf_clicked()
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
+    ui->buttonAreas->setChecked(false);
     send();
 }
 
@@ -108,11 +115,13 @@ void Strobe::on_buttonCircles_clicked()
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
+    ui->buttonAreas->setChecked(false);
     send();
 }
 
-void Strobe::on_speedSlider_valueChanged(int)
+void Strobe::on_speedSlider_valueChanged(int val)
 {
+    ui->spinBoxSpeed->setValue(val);
     send();
 }
 
@@ -127,6 +136,18 @@ void Strobe::on_buttonSnake_clicked()
     ui->buttonCircles->setChecked(false);
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
+    ui->buttonAreas->setChecked(false);
     ui->buttonSnake->setChecked(true);
+    send();
+}
+
+void Strobe::on_buttonAreas_clicked()
+{
+    ui->buttonHalf->setChecked(false);
+    ui->buttonCircles->setChecked(false);
+    ui->buttonRandom->setChecked(false);
+    ui->buttonNormal->setChecked(false);
+    ui->buttonSnake->setChecked(false);
+    ui->buttonAreas->setChecked(true);
     send();
 }

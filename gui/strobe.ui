@@ -21,20 +21,36 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Speed</string>
+          <string>Speed (bpm)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QSlider" name="speedSlider">
+         <property name="minimum">
+          <number>10</number>
+         </property>
          <property name="maximum">
-          <number>100</number>
+          <number>200</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="tickPosition">
           <enum>QSlider::TicksBelow</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBoxSpeed">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="minimum">
+          <number>10</number>
+         </property>
+         <property name="maximum">
+          <number>200</number>
          </property>
         </widget>
        </item>
@@ -111,6 +127,16 @@
         <widget class="QPushButton" name="buttonSnake">
          <property name="text">
           <string>Snake</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonAreas">
+         <property name="text">
+          <string>Areas</string>
          </property>
          <property name="checkable">
           <bool>true</bool>

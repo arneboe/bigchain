@@ -35,6 +35,8 @@ private slots:
 
     void on_buttonSnake_clicked();
 
+    void on_buttonAreas_clicked();
+
 private:
     void send();
     Ui::Strobe *ui;
