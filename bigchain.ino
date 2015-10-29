@@ -1,44 +1,32 @@
 #include "FastLED.h"
 #include "Mode.h"
-#define NUM_LEDS 45
+#define NUM_LEDS 100
 #define DATA_PIN 7
 
 #include "Time.h"
 CRGB leds[NUM_LEDS]; //has to be here to be available in all modes
 uint8_t buffer[NUM_LEDS]; //a shared buffer that can be used by every mode to do whatever it wants with it
-
-void waitForBytes(const uint8_t num)
-{
-  //wait for data
-  while(Serial.available() < num)
-  {
-    delay(1);
-  }
-}
+uint16_t speed = 0;//has to be available to all modes
 
 #include "Strobe.h"
 #include "ColorFade.h"
 
 //type of the parse functions
-typedef void (*ParsePtr)(void);
 typedef void (*ExecutePtr)(void);
 typedef void (*InitPtr)(void);
 
-ParsePtr parse[NUM_MODES];//the parse functions of all the modes
 ExecutePtr execute[NUM_MODES];
 InitPtr initialize[NUM_MODES];
-Mode currentMode = FADE;
-
+Mode currentMode = STROBE;
+Mode lastMode = currentMode;
 
 void setup() { 
   Serial.begin(9600);
   
   initialize[FADE] = colorFadeInit;
-  parse[FADE] = colorFadeParseSerial;
   execute[FADE] = colorFadeUpdate;
   
   initialize[STROBE] = strobeInit;
-  parse[STROBE] = strobeParseSerial;
   execute[STROBE] = strobeUpdate;  
   
   FastLED.addLeds<WS2811, DATA_PIN>(leds, NUM_LEDS);
@@ -56,22 +44,22 @@ void setup() {
   }
   FastLED.show();  
   delay(500);
-  
-  
+
   initialize[currentMode]();
-    
 }
 
-void loop() { 
-  if(Serial.available() > 0)
+void updateButtons()
+{
+  //read speed and mode
+}
+
+void loop() 
+{ 
+  updateButtons();
+  if(currentMode != lastMode)
   {
-    const uint8_t mode = Serial.read();
-    if(mode != currentMode)
-    {
-      currentMode = (Mode)mode;
-      initialize[currentMode](); 
-    }
-    parse[currentMode]();
+    lastMode = currentMode;
+    initialize[currentMode]();    
   }
   execute[currentMode]();
   FastLED.show();

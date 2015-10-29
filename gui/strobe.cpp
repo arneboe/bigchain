@@ -40,10 +40,6 @@ void Strobe::send()
         {
             data.append((char)STROBE_HALF);
         }
-        else if(ui->buttonCircles->isChecked())
-        {
-            data.append((char)STROBE_CIRCLE);
-        }
         else if(ui->buttonRandom->isChecked())
         {
             data.append((char)STROBE_RANDOM);
@@ -78,7 +74,7 @@ void Strobe::send()
 void Strobe::on_buttonNormal_clicked()
 {
     ui->buttonHalf->setChecked(false);
-    ui->buttonCircles->setChecked(false);
+
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(true);
     ui->buttonSnake->setChecked(false);
@@ -89,7 +85,7 @@ void Strobe::on_buttonNormal_clicked()
 void Strobe::on_buttonRandom_clicked()
 {
     ui->buttonHalf->setChecked(false);
-    ui->buttonCircles->setChecked(false);
+
     ui->buttonRandom->setChecked(true);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
@@ -100,7 +96,7 @@ void Strobe::on_buttonRandom_clicked()
 void Strobe::on_buttonHalf_clicked()
 {
     ui->buttonHalf->setChecked(true);
-    ui->buttonCircles->setChecked(false);
+
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
@@ -111,7 +107,7 @@ void Strobe::on_buttonHalf_clicked()
 void Strobe::on_buttonCircles_clicked()
 {
     ui->buttonHalf->setChecked(false);
-    ui->buttonCircles->setChecked(true);
+
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);
@@ -133,7 +129,7 @@ void Strobe::on_checkBoxColor_clicked()
 void Strobe::on_buttonSnake_clicked()
 {
     ui->buttonHalf->setChecked(false);
-    ui->buttonCircles->setChecked(false);
+
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonAreas->setChecked(false);
@@ -144,7 +140,7 @@ void Strobe::on_buttonSnake_clicked()
 void Strobe::on_buttonAreas_clicked()
 {
     ui->buttonHalf->setChecked(false);
-    ui->buttonCircles->setChecked(false);
+
     ui->buttonRandom->setChecked(false);
     ui->buttonNormal->setChecked(false);
     ui->buttonSnake->setChecked(false);

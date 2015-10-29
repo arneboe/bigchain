@@ -31,7 +31,7 @@
           <number>10</number>
          </property>
          <property name="maximum">
-          <number>200</number>
+          <number>254</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -50,7 +50,7 @@
           <number>10</number>
          </property>
          <property name="maximum">
-          <number>200</number>
+          <number>245</number>
          </property>
         </widget>
        </item>
@@ -107,16 +107,6 @@
         <widget class="QPushButton" name="buttonHalf">
          <property name="text">
           <string>Left &lt;-&gt; Right</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="buttonCircles">
-         <property name="text">
-          <string>Circles</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
