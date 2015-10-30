@@ -8,5 +8,6 @@ enum Mode
     B_STROBE,
     G_STROBE,
     FADE_STROBE,
+    FADE_STROBE_2,
     NUM_MODES
 };

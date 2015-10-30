@@ -1,7 +1,7 @@
 
 static uint16_t strobeDelay = 2000;//delay in ms
 static uint16_t lastSpeed = speed;
-static uint16_t strobeFlashDuration = 20;//time the light is on
+static uint16_t strobeFlashDuration = 4;//time the light is on
 static boolean strobeWhite = false;
 static CRGB strobeOnColor = CRGB::White;
 static CRGB strobeOffColor = CRGB::Black;
@@ -32,9 +32,15 @@ void gStrobeInit()
 
 void fadeStrobeInit()
 {
-  strobeOnColor.setHue(onHue);
-  strobeOffColor.setHue(offHue);
+
 }
+
+void fadeStrobe2Init()
+{
+  strobeOffColor = CRGB::Black;
+}
+
+
 
 void rgStrobeInit()
 {
@@ -115,4 +121,31 @@ void strobeUpdate()
     strobeOn();
   }
 }
+
+void fadeStrobe2Update()
+{  
+  static unsigned long lastTime = 0;
+  static unsigned long currentTime = 0;
+  static uint8_t h = 0;
+  currentTime = millis();
+  
+  strobeDelay = 1024 - speed;  
+
+  if(strobeWhite && (currentTime - lastTime) > strobeFlashDuration)
+  {
+    lastTime = currentTime;
+    strobeWhite = false;
+    strobeOff();
+    
+  }
+  else if(!strobeWhite && (currentTime - lastTime) > strobeDelay)
+  {
+    lastTime = currentTime;
+    strobeWhite = true;
+    h += 119;
+    strobeOnColor.setHue(h);
+    strobeOn();
+  }
+}
+
 

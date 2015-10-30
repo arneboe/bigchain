@@ -22,7 +22,7 @@ void colorFadeUpdate()
   WAIT(colorFadeDelay);
   for(uint8_t i = 0; i < NUM_LEDS; ++i)
  {
-   buffer[i] += 3;
+   buffer[i] += 6;
    leds[i].setHue(buffer[i]);   
  } 
 }

@@ -51,7 +51,9 @@ void setup()
 
   initialize[FADE_STROBE] = fadeStrobeInit;
   execute[FADE_STROBE] = fadeStrobeUpdate;   
-  
+
+  initialize[FADE_STROBE_2] = fadeStrobe2Init;
+  execute[FADE_STROBE_2] = fadeStrobe2Update; 
   
   FastLED.addLeds<WS2811, DATA_PIN>(leds, NUM_LEDS);
   
