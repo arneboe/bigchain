@@ -10,7 +10,7 @@ void colorFadeInit()
 
 void colorFadeUpdate()
 {
-  WAIT(cfData.delay);
+  WAIT(colorFadeDelay);
   for(uint8_t i = 0; i < NUM_LEDS; ++i)
  {
    ++buffer[i];

@@ -21,6 +21,9 @@ Mode currentMode = STROBE;
 Mode lastMode = currentMode;
 
 void setup() { 
+  
+  pinMode(A1, OUTPUT);
+  digitalWrite(A1, HIGH);
   Serial.begin(9600);
   
   initialize[FADE] = colorFadeInit;
@@ -51,17 +54,20 @@ void setup() {
 void updateButtons()
 {
   //read speed and mode
+  speed = analogRead(A0);
 }
 
 void loop() 
 { 
+  //digitalWrite(A1, HIGH);
   updateButtons();
+  //Serial.println(speed);
   if(currentMode != lastMode)
   {
     lastMode = currentMode;
     initialize[currentMode]();    
   }
   execute[currentMode]();
-  FastLED.show();
+  FastLED.show(); 
 }
 

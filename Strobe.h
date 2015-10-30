@@ -29,16 +29,20 @@ void strobeOff()
 
 void strobeUpdate()
 {  
-  strobeDelay = 1024 + strobeFlashDuration - speed;
-  if(strobeWhite)
+  static unsigned long lastTime = 0;
+  static unsigned long currentTime = 0;
+  currentTime = millis();
+  strobeDelay = 1024 - speed;
+  if(strobeWhite && (currentTime - lastTime) > strobeFlashDuration)
   {
-    WAIT(strobeFlashDuration);
+    lastTime = currentTime;
     strobeWhite = false;
     strobeOff();
+    
   }
-  else
+  else if(!strobeWhite && (currentTime - lastTime) > strobeDelay)
   {
-    WAIT(strobeDelay);
+    lastTime = currentTime;
     strobeWhite = true;
     strobeOn();
   }
