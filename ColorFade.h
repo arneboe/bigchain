@@ -19,10 +19,11 @@ void randomColorFadeInit()
 void colorFadeUpdate()
 {
   colorFadeDelay = 1024 - speed;
+  colorFadeDelay /= 2;
   WAIT(colorFadeDelay);
   for(uint8_t i = 0; i < NUM_LEDS; ++i)
  {
-   buffer[i] += 6;
+   buffer[i] += 1;
    leds[i].setHue(buffer[i]);   
  } 
 }

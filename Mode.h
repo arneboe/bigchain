@@ -2,6 +2,7 @@ enum Mode
 {
     FADE,
     RAND_FADE,
+    DIST_FADE,
     BW_STROBE,
     RG_STROBE,
     R_STROBE,
